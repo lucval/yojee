@@ -10,11 +10,13 @@ import (
 
 var basicTax float64 = 0.0
 var importTax float64 = 0.0
+var roundUnit float64 = 0.0
 
 // SetupTaxes sets basic and import taxes to the provided values.
-func SetupTaxes(bTax, iTax float64) {
+func SetupTaxes(bTax, iTax, rUnit float64) {
   basicTax = bTax
   importTax = iTax
+  roundUnit = rUnit
 }
 
 type Item struct {
@@ -31,11 +33,11 @@ func NewItem(quantity uint64, product *Product, price float64) *Item {
   taxes := 0.0
   if product.Category.Exemption == false {
     // Basic tax on not exempt product
-    taxes += roundUp((price * basicTax), 0.05)
+    taxes += roundUp((price * basicTax), roundUnit)
   }
   if product.Imported {
     // Import tax on imported product
-    taxes += roundUp((price * importTax), 0.05)
+    taxes += roundUp((price * importTax), roundUnit)
   }
 
   return &Item{quantity, product, price, taxes}

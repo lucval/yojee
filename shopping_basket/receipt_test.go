@@ -12,7 +12,7 @@ import (
 // Ensure that Item is correctly added to Receipt and taxes and total are
 // calculated correctly.
 func TestReceiptAddItem(t *testing.T) {
-  SetupTaxes(0.1, 0.05)
+  SetupTaxes(0.1, 0.05, 0.05)
 
   testSlice := []Item{
     Item{1, NewProduct("book"), 12.49, 0.0},
@@ -50,7 +50,7 @@ func TestReceiptAddItem(t *testing.T) {
 
 // Ensure that Receipt is correctly printed.
 func TestReceiptString(t *testing.T) {
-  SetupTaxes(0.1, 0.05)
+  SetupTaxes(0.1, 0.05, 0.05)
 
   receipt := NewReceipt()
   receipt.AddItem(NewItem(1, NewProduct("book"), 12.49))

@@ -17,7 +17,7 @@ type input struct {
 
 // Ensure that Item is correctly instantiated.
 func TestNewItem(t *testing.T) {
-  SetupTaxes(0.1, 0.05)
+  SetupTaxes(0.1, 0.05, 0.05)
 
   testMap := map[input]float64{
     input{1, NewProduct("book"), 12.49}:                        0.0,
@@ -46,7 +46,7 @@ func TestNewItem(t *testing.T) {
 
 // Ensure that Item is correctly printed.
 func TestItemString(t *testing.T) {
-  SetupTaxes(0.1, 0.05)
+  SetupTaxes(0.1, 0.05, 0.05)
 
   testMap := map[input]string{
     input{1, NewProduct("book"), 12.49}:

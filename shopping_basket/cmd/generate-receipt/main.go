@@ -14,6 +14,7 @@ var (
   inputFile string
   basicTax  float64
   importTax float64
+  roundUnit float64
 )
 
 func init() {
@@ -23,9 +24,10 @@ func init() {
   flag.StringVar(&inputFile, "file", "", "Shopping basket CSV file path")
   flag.Float64Var(&basicTax, "basicTax", 0.1, "Basic sales tax rate")
   flag.Float64Var(&importTax, "importTax", 0.05, "Import tax rate")
+  flag.Float64Var(&roundUnit, "roundUnit", 0.05, "Taxes round unit")
   flag.Parse()
 
-  shopping_basket.SetupTaxes(basicTax, importTax)
+  shopping_basket.SetupTaxes(basicTax, importTax, roundUnit)
 }
 
 func main() {

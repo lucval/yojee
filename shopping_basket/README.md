@@ -19,8 +19,7 @@ a space).
 An *item* is intended as an entry (line) of a shopping *receipt* and can
 therefore be seen as a collection of same products (but a *product* and thus
 items can be repeated multiple times in a *receipt*). Taxes are calculated on
-each *item*'s *product* price rounding them up to the nearest 0.05 (currently
-hard-coded).
+each *item*'s *product* price rounding them up to the nearest round unit.
 As already said a *receipt* is a collection of items with the corresponding
 taxes and total price.
 
@@ -57,9 +56,11 @@ ARGS:
   -file string
     Shopping basket CSV file path
   -basicTax float
-    	Basic sales tax rate (default 0.1)
+    Basic sales tax rate (default 0.1)
   -importTax float
-    	Import tax rate (default 0.05)
+    Import tax rate (default 0.05)
+  -roundUnit float
+    Taxes round unit (default 0.05)
 ```
 
 ##### Input
@@ -78,4 +79,3 @@ Future Improvements
 - *product* should be provided with an ID and mapping between products and
 categories could be defined by mean of a relational database
 - a relation or an extra input field could be used to define imported products
-- round unit should be configurable
