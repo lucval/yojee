@@ -7,7 +7,7 @@ import (
   "os"
   "strconv"
   "strings"
-  "yojee/shopping_basket"
+  "github.com/lucval/yojee/shopping_basket"
 )
 
 var (

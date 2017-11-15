@@ -31,11 +31,16 @@ Getting Started
 To start using this package, install Go and run `go get`:
 
 ```sh
-$ go get github.com/lucval/yojee/...
+$ go get github.com/lucval/yojee/shopping_basket
 ```
 
-This will retrieve the library and install the various command line utility into
-your `$GOBIN` path.
+Further install the desired command by running:
+
+```sh
+$ go install github.com/lucval/yojee/shopping_basket/cmd/<command>
+```
+
+This will install the requested command line utility into your $GOBIN path.
 
 Commands
 ========
