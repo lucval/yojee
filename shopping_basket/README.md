@@ -52,7 +52,7 @@ generate-receipt
 Prints out the receipt details of a shopping basket provided as input in a
 CSV file.
 
-##### Usage
+### Usage
 
 ```sh
 generate-receipt [ARGS]
@@ -68,7 +68,7 @@ ARGS:
     Taxes round unit (default 0.05)
 ```
 
-##### Input
+### Input
 
 Shopping baskets must be provided as input in a CSV file as follows.
 ```sh
@@ -82,5 +82,6 @@ where:
 Future Improvements
 ===================
 - *product* should be provided with an ID and mapping between products and
-categories could be defined by mean of a relational database
+categories could be defined by mean of a relational or key/value database
+(a version using a pre-populated kvdb is available in a [separate branch](https://github.com/lucval/yojee/tree/category-from-kv/shopping_basket#shopping-basket))
 - a relation or an extra input field could be used to define imported products
