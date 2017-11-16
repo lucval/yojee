@@ -20,8 +20,10 @@ var categoryMap map[string]Category
 // LoadCategoryMap populates the map of categories from a KVDB provided as
 // input.
 func LoadCategoryMap(dbName string) {
-  // Open database
+  // Open KVDB
   kv.Open(dbName)
+  // Close KVDB on exit
+  defer kv.Close()
 
   // Retrieve categories from KVDB
   rawCategories, err := kv.List("category")
