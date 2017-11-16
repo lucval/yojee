@@ -9,10 +9,9 @@ import (
   "testing"
 )
 
-var bookCategory Category = Category{"Book", true}
-var foodCategory Category = Category{"Food", true}
-var medicalCategory Category = Category{"Medical", true}
-var otherCategory Category = Category{"Other", false}
+var bookCategory Category = Category{"book", true}
+var foodCategory Category = Category{"food", true}
+var medicalCategory Category = Category{"medical", true}
 
 func init() {
   categoryMap = map[string]Category {
@@ -27,14 +26,14 @@ func init() {
 func TestNewCategory(t *testing.T) {
   testMap := map[string]Category{
     "book":                     bookCategory,
-    "bOOk":                     otherCategory,
-    "book of law":              otherCategory,
-    "imported book":            otherCategory,
+    "bOOk":                     Category{},
+    "book of law":              Category{},
+    "imported book":            Category{},
     "chocolate bar":            foodCategory,
-    "box of chocolate":         otherCategory,
+    "box of chocolate":         Category{},
     "box of chocolates":        foodCategory,
-    "box_of_chocolates":        otherCategory,
-    "box of headache pills":    otherCategory,
+    "box_of_chocolates":        Category{},
+    "box of headache pills":    Category{},
     "packet of headache pills": medicalCategory,
   }
 

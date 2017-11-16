@@ -9,8 +9,8 @@ to a *category* which determines whether the *product* is exempt from basic
 sales tax.
 Categories and their mappings with existing products must be provided via a
 [Bolt](https://github.com/boltdb/bolt) key/value database (if no category is
-found for a specific product, the product will then belong to the default
-(Other) category which is not exempt from basic sales tax).
+found for a specific product, the product will not be exempt from basic sales
+tax).
 Furthermore in the current implementation *product* names are identifiers used
 to map a *product* with the corresponding *category*.
 A second import tax can be applied on imported products. This occurs when a

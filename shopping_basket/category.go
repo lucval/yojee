@@ -64,10 +64,5 @@ func LoadCategoryMap(dbName string) {
 // This function returns a pointer to the instantiated Category.
 func NewCategory(productName string) *Category {
   c := categoryMap[productName]
-  if c.Name == "" {
-    // Default to category Other
-    c.Name = "Other"
-    c.Exemption = false
-  }
   return &c
 }
