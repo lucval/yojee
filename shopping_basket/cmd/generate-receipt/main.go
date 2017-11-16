@@ -11,7 +11,8 @@ import (
 )
 
 var (
-  inputFile string
+  csvFile string
+  kvdbFile string
   basicTax  float64
   importTax float64
   roundUnit float64
@@ -21,7 +22,8 @@ func init() {
   // Set output flags of standard logger
   log.SetFlags(0)
 
-  flag.StringVar(&inputFile, "file", "", "Shopping basket CSV file path")
+  flag.StringVar(&csvFile, "csvFile", "", "Shopping basket CSV file path")
+  flag.StringVar(&kvdbFile, "kvdbFile", "category.db", "Categories KVDB file path")
   flag.Float64Var(&basicTax, "basicTax", 0.1, "Basic sales tax rate")
   flag.Float64Var(&importTax, "importTax", 0.05, "Import tax rate")
   flag.Float64Var(&roundUnit, "roundUnit", 0.05, "Taxes round unit")
@@ -31,14 +33,17 @@ func init() {
 }
 
 func main() {
-  if inputFile == "" {
+  if csvFile == "" {
     log.Print("Input file is required")
     flag.Usage()
     os.Exit(1)
   }
 
+  // Load categoryMap
+  shopping_basket.LoadCategoryMap(kvdbFile)
+
   // Open input file
-  csvFile, err := os.Open(inputFile)
+  csvFile, err := os.Open(csvFile)
   if err != nil {
     log.Fatalf("Failed to open CSV file: %s", err)
   }
