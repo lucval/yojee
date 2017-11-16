@@ -9,6 +9,20 @@ import (
   "testing"
 )
 
+var bookCategory Category = Category{"Book", true}
+var foodCategory Category = Category{"Food", true}
+var medicalCategory Category = Category{"Medical", true}
+var otherCategory Category = Category{"Other", false}
+
+func init() {
+  categoryMap = map[string]Category {
+    "book":                     bookCategory,
+    "chocolate bar":            foodCategory,
+    "box of chocolates":        foodCategory,
+    "packet of headache pills": medicalCategory,
+  }
+}
+
 // Ensure that Category is correctly instantiated.
 func TestNewCategory(t *testing.T) {
   testMap := map[string]Category{
