@@ -23,7 +23,7 @@ func init() {
   log.SetFlags(0)
 
   flag.StringVar(&csvFile, "csvFile", "", "Shopping basket CSV file path")
-  flag.StringVar(&kvdbFile, "kvdbFile", "category.db", "Categories KVDB file path")
+  flag.StringVar(&kvdbFile, "kvdbFile", "", "Categories KVDB file path")
   flag.Float64Var(&basicTax, "basicTax", 0.1, "Basic sales tax rate")
   flag.Float64Var(&importTax, "importTax", 0.05, "Import tax rate")
   flag.Float64Var(&roundUnit, "roundUnit", 0.05, "Taxes round unit")
