@@ -1,4 +1,5 @@
 Yojee
 =====
 
-This repository contains assessments developed following guidelines received from Yojee.
+This repository contains libraries and applications developed to tackle an
+assessment from Yojee.

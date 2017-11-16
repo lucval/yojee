@@ -7,9 +7,10 @@ components of a traditional shopping basket.
 The base element of a shopping basket is a *product*. Every *product* belongs
 to a *category* which determines whether the *product* is exempt from basic
 sales tax.
-In the current implementation 4 categories are defined: book, food, medical and
-other. The latter is the only *category* not exempt from basic sales tax. For
-convenience the definition of these categories is hard-coded in the source.
+Categories and their mappings with existing products must be provided via a
+[Bolt](https://github.com/boltdb/bolt) key/value database (if no category is
+found for a specific product, the product will then belong to the default
+(Other) category which is not exempt from basic sales tax).
 Furthermore in the current implementation *product* names are identifiers used
 to map a *product* with the corresponding *category*.
 A second import tax can be applied on imported products. This occurs when a
@@ -29,18 +30,50 @@ Getting Started
 ### Installing
 
 To start using this package, install Go and run `go get`:
-
 ```sh
 $ go get github.com/lucval/yojee/shopping_basket
 ```
 
-Further install the desired command by running:
+The [kv library](https://github.com/lucval/yojee/tree/category-from-kv/kv#kv)
+must also be retrieved:
+```sh
+$ go get github.com/lucval/yojee/kv
+```
 
+And installed:
+```sh
+$ go install github.com/lucval/yojee/kv/cmd/kv
+```
+
+Further install the desired command by running:
 ```sh
 $ go install github.com/lucval/yojee/shopping_basket/cmd/<command>
 ```
 
 This will install the requested command line utility into your $GOBIN path.
+
+### Setup database
+
+Categories can be added to the database using this command:
+```sh
+$ kv set <db-path> category <category-name> <exemption>
+```
+Where:
+- db-path is the path to the Bolt kvdb file (if not yet available a new file
+  will be created)
+- category-name is the name of the category to be created
+- exemption is a boolean representing whether products belonging to this
+  category are exempt from basic sales tax
+
+Products can be added to the database using this command:
+```sh
+$ kv set <db-path> product <product-name> <category-name>
+```
+Where:
+- db-path is the path to the Bolt kvdb file (if not yet available a new file
+  will be created)
+- product-name is the name of the product (imported prefix is not required)
+- category-name is the name of the category to be created
 
 Commands
 ========
@@ -53,13 +86,14 @@ Prints out the receipt details of a shopping basket provided as input in a
 CSV file.
 
 ##### Usage
-
 ```sh
 generate-receipt [ARGS]
 
 ARGS:
-  -file string
+  -csvFile string
     Shopping basket CSV file path
+  -kvdbFile string
+    Categories KVDB file path
   -basicTax float
     Basic sales tax rate (default 0.1)
   -importTax float
@@ -70,7 +104,7 @@ ARGS:
 
 ##### Input
 
-Shopping baskets must be provided as input in a CSV file as follows.
+Shopping baskets must be provided as input in a CSV file as follows:
 ```sh
 quantity, product, price
 ```
@@ -81,6 +115,4 @@ where:
 
 Future Improvements
 ===================
-- *product* should be provided with an ID and mapping between products and
-categories could be defined by mean of a relational database
-- a relation or an extra input field could be used to define imported products
+- an extra input field could be used to define imported products
