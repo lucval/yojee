@@ -5,6 +5,7 @@ used by several applications.
 package shopping_basket
 
 import (
+  "os"
   "reflect"
   "testing"
   "github.com/lucval/yojee/kv"
@@ -43,6 +44,9 @@ func TestLoadCategoryMap(t *testing.T) {
 
   // Load map from file
   LoadCategoryMap("category_test.db")
+
+  // Remove KVDB file
+  os.Remove("category_test.db")
 
   for k, v := range categoryMap {
     if reflect.DeepEqual(v, testCategoryMap[k]) == false {
