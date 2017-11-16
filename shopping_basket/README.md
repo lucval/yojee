@@ -45,7 +45,7 @@ And installed:
 $ go install github.com/lucval/yojee/kv/cmd/kv
 ```
 
-Further install the desired command by running:
+**After having checked out to the category-from-kv branch**, you can install the desired command by running:
 ```sh
 $ go install github.com/lucval/yojee/shopping_basket/cmd/<command>
 ```
@@ -75,6 +75,8 @@ Where:
 - product-name is the name of the product (imported prefix is not required)
 - category-name is the name of the category to be created
 
+An example key/value database file *category.db* is provided in the repo as well to speed up this procedure.
+
 Commands
 ========
 
@@ -85,7 +87,7 @@ generate-receipt
 Prints out the receipt details of a shopping basket provided as input in a
 CSV file.
 
-##### Usage
+### Usage
 ```sh
 generate-receipt [ARGS]
 
@@ -102,7 +104,7 @@ ARGS:
     Taxes round unit (default 0.05)
 ```
 
-##### Input
+### Input
 
 Shopping baskets must be provided as input in a CSV file as follows:
 ```sh
