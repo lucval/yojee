@@ -24,14 +24,14 @@ func LoadCategoryMap(dbName string) {
   kv.Open(dbName)
 
   // Retrieve categories from KVDB
-	rawCategories, err := kv.List("category")
-	if err != nil {
-		log.Fatalf("Failed to lookup categories, please check the KVDB file")
-	}
+  rawCategories, err := kv.List("category")
+  if err != nil {
+    log.Fatalf("Failed to lookup categories, please check the KVDB file")
+  }
 
   // Load categories in a map
   categories := make(map[string]Category)
-	for k, v := range rawCategories {
+  for k, v := range rawCategories {
     exemption, err := strconv.ParseBool(v)
     if err != nil {
       log.Printf("%s", err)
@@ -41,15 +41,15 @@ func LoadCategoryMap(dbName string) {
   }
 
   // Retrieve products from KVDB
-	rawCategoryMap, err := kv.List("product")
-	if err != nil {
-		log.Printf("%s", err)
-		log.Fatalf("Failed to lookup products")
-	}
+  rawCategoryMap, err := kv.List("product")
+  if err != nil {
+    log.Printf("%s", err)
+    log.Fatalf("Failed to lookup products")
+  }
 
   // Load categoryMap
   categoryMap = make(map[string]Category)
-	for k, v := range rawCategoryMap {
+  for k, v := range rawCategoryMap {
     c := categories[v]
     if c.Name != "" {
       categoryMap[k] = c
