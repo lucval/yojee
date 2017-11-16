@@ -7,9 +7,10 @@ components of a traditional shopping basket.
 The base element of a shopping basket is a *product*. Every *product* belongs
 to a *category* which determines whether the *product* is exempt from basic
 sales tax.
-In the current implementation 4 categories are defined: book, food, medical and
-other. The latter is the only *category* not exempt from basic sales tax. For
-convenience the definition of these categories is hard-coded in the source.
+In the current implementation 3 categories are defined: book, food and medical,
+all of them exempt from basic sales tax (if no category is found for a specific
+product, the product will not be exempt from basic sales tax).
+For convenience the definition of these categories is hard-coded in the source.
 Furthermore in the current implementation *product* names are identifiers used
 to map a *product* with the corresponding *category*.
 A second import tax can be applied on imported products. This occurs when a

@@ -13,14 +13,14 @@ import (
 func TestNewCategory(t *testing.T) {
   testMap := map[string]Category{
     "book":                     bookCategory,
-    "bOOk":                     otherCategory,
-    "book of law":              otherCategory,
-    "imported book":            otherCategory,
+    "bOOk":                     Category{},
+    "book of law":              Category{},
+    "imported book":            Category{},
     "chocolate bar":            foodCategory,
-    "box of chocolate":         otherCategory,
+    "box of chocolate":         Category{},
     "box of chocolates":        foodCategory,
-    "box_of_chocolates":        otherCategory,
-    "box of headache pills":    otherCategory,
+    "box_of_chocolates":        Category{},
+    "box of headache pills":    Category{},
     "packet of headache pills": medicalCategory,
   }
 

@@ -38,10 +38,10 @@ func TestIsImported(t *testing.T) {
 func TestNewProduct(t *testing.T) {
   testMap := map[string]Product{
     "book":                     Product{"book", &bookCategory, false},
-    "bOOk":                     Product{"bOOk", &otherCategory, false},
+    "bOOk":                     Product{"bOOk", &Category{}, false},
     "imported book":            Product{"book", &bookCategory, true},
     "chocolate bar":            Product{"chocolate bar", &foodCategory, false},
-    "imported chocolate bars":  Product{"chocolate bars", &otherCategory, true},
+    "imported chocolate bars":  Product{"chocolate bars", &Category{}, true},
     "packet of headache pills": Product{
       "packet of headache pills", &medicalCategory, false},
   }

@@ -13,7 +13,6 @@ type Category struct {
 var bookCategory Category = Category{"Book", true}
 var foodCategory Category = Category{"Food", true}
 var medicalCategory Category = Category{"Medical", true}
-var otherCategory Category = Category{"Other", false}
 
 var categoryMap = map[string]Category {
   "book":                     bookCategory,
@@ -27,8 +26,5 @@ var categoryMap = map[string]Category {
 // This function returns a pointer to the instantiated Category.
 func NewCategory(productName string) *Category {
   c := categoryMap[productName]
-  if c.Name == "" {
-    c = otherCategory
-  }
   return &c
 }
