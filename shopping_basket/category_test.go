@@ -7,18 +7,48 @@ package shopping_basket
 import (
   "reflect"
   "testing"
+  "github.com/lucval/yojee/kv"
 )
 
 var bookCategory Category = Category{"book", true}
 var foodCategory Category = Category{"food", true}
 var medicalCategory Category = Category{"medical", true}
 
-func init() {
-  categoryMap = map[string]Category {
+// Ensure that categoryMap is correctly populated.
+func TestLoadCategoryMap(t *testing.T) {
+  // Open KVDB
+  kv.Open("category_test.db")
+
+  // Populate category bucket
+  kv.Insert("category", "book", "true")
+  kv.Insert("category", "food", "true")
+  kv.Insert("category", "medical", "true")
+
+  // Populate product bucket
+  kv.Insert("product", "book", "book")
+  kv.Insert("product", "chocolate bar", "food")
+  kv.Insert("product", "box of chocolates", "food")
+  kv.Insert("product", "packet of headache pills", "medical")
+
+  // Close KVDB
+  kv.Close()
+
+  // Test map
+  testCategoryMap := map[string]Category {
     "book":                     bookCategory,
     "chocolate bar":            foodCategory,
     "box of chocolates":        foodCategory,
     "packet of headache pills": medicalCategory,
+  }
+
+  // Load map from file
+  LoadCategoryMap("category_test.db")
+
+  for k, v := range categoryMap {
+    if reflect.DeepEqual(v, testCategoryMap[k]) == false {
+      t.Errorf("Category for product '%s' unmatched (%s instead of %s)",
+        k, v, testCategoryMap[k])
+    }
   }
 }
 
